@@ -27,7 +27,7 @@ function HeroDesktop() {
               <div className="text-uppercase small text-muted-apple fw-semibold">
                 {s.badge}
               </div>
-              <div className="fw-semibold" style={{ lineHeight: 1.2 }}>
+              <div className="fw-semibold mb-5" style={{ lineHeight: 1.2 }}>
                 {s.title}
               </div>
             </div>

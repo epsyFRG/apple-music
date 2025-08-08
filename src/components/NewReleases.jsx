@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { Row, Col, Spinner } from "react-bootstrap"
 import SectionHeader from "./SectionHeader"
 import MusicCard from "./MusicCard"
+import NewReleasesMobile from "./NewReleasesMobile"
 
 const API_BASE = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
 
@@ -30,7 +31,7 @@ function NewReleases() {
         const uniqueById = Array.from(
           new Map(combined.map((t) => [t.id, t])).values()
         )
-        setTracks(uniqueById.slice(0, 6))
+        setTracks(uniqueById)
       } catch (err) {
         if (err.name !== "AbortError") setError(err.message)
       } finally {
@@ -43,7 +44,7 @@ function NewReleases() {
 
   return (
     <section className="mt-4">
-      <SectionHeader title="Nuove uscite" />
+      <SectionHeader title="Nuove uscite" showChevron={true} />
       {isLoading && (
         <div className="d-flex justify-content-center py-5">
           <Spinner animation="border" role="status" />
@@ -51,17 +52,27 @@ function NewReleases() {
       )}
       {error && <div className="text-danger">{error}</div>}
       {!isLoading && !error && (
-        <Row className="g-2">
-          {tracks.slice(0, 10).map((t) => (
-            <Col key={t.id} xs={4} sm={4} md={3} className="col-lg-5th">
-              <MusicCard
-                title={t.title}
-                artist={t.artist?.name}
-                cover={t.album?.cover_medium}
-              />
-            </Col>
-          ))}
-        </Row>
+        <>
+          {/* Desktop */}
+          <div className="d-none d-md-block">
+            <Row className="g-2">
+              {tracks.slice(0, 10).map((t) => (
+                <Col key={t.id} xs={4} sm={4} md={3} className="col-lg-5th">
+                  <MusicCard
+                    title={t.title}
+                    artist={t.artist?.name}
+                    cover={t.album?.cover_medium}
+                    trackData={t}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </div>
+          {/* Mobile Carousel */}
+          <div className="d-md-none">
+            <NewReleasesMobile tracks={tracks.slice(0, 10)} />
+          </div>
+        </>
       )}
     </section>
   )

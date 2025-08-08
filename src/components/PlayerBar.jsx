@@ -15,13 +15,17 @@ function PlayerBar() {
           </div>
         </div>
         <div className="d-flex align-items-center">
-          <Button aria-label="Play" variant="link" className="btn-icon">
+          <Button
+            aria-label="Play"
+            variant="link"
+            className="btn-icon text-secondary"
+          >
             <PlayFill className="icon-lg" />
           </Button>
           <Button
             aria-label="Brano successivo"
             variant="link"
-            className="btn-icon"
+            className="btn-icon text-secondary"
           >
             <SkipForwardFill className="icon-lg" />
           </Button>
