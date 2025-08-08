@@ -1,0 +1,64 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+  --bg-dark: #161616;
+  --panel-dark: #1c1c1e;
+  --text: #e5e5e7;
+  --muted: #a1a1a6;
+  --accent: #ff2d55;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: var(--bg-dark);
+  color: var(--text);
+}
+
+.text-muted-apple {
+  color: var(--muted) !important;
+}
+.bg-panel {
+  background-color: var(--panel-dark) !important;
+}
+.rounded-12 {
+  border-radius: 12px;
+}
+.rounded-18 {
+  border-radius: 18px;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: #2a2a2c;
+}
+
+a,
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #3a3a3c;
+  border-radius: 10px;
+}
+
+.music-placeholder {
+  background: linear-gradient(180deg, #2b2b2e, #222224);
+  border-radius: 12px;
+  height: 160px;
+}
+
+@media (min-width: 992px) {
+  .music-placeholder {
+    height: 200px;
+  }
+}
