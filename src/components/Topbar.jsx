@@ -26,12 +26,14 @@ import {
   Broadcast,
   Heart,
 } from "react-bootstrap-icons"
+import { Link, useLocation } from "react-router-dom"
 import Logo from "./Logo"
 import ElasticSlider from "./ElasticSlider"
 import { useState } from "react"
 
-function Topbar({ onNavigate, activeView }) {
+function Topbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+  const location = useLocation()
   return (
     <Navbar
       className="bg-panel topbar rounded-12 mt-2 px-2"
@@ -47,52 +49,52 @@ function Topbar({ onNavigate, activeView }) {
             </Dropdown.Toggle>
             <Dropdown.Menu className="mobile-dropdown bg-panel border-0 rounded-12">
               <Dropdown.Item
+                href="#"
                 className="text-white d-flex align-items-center gap-2"
-                active={activeView === "search"}
-                onClick={() => {
-                  onNavigate && onNavigate("search")
+                onClick={(e) => {
+                  e.preventDefault()
                   setShowMobileMenu(false)
                 }}
               >
                 <Search className="text-danger" /> Cerca
               </Dropdown.Item>
               <Dropdown.Item
+                href="#"
                 className="text-white d-flex align-items-center gap-2"
-                active={activeView === "home"}
-                onClick={() => {
-                  onNavigate && onNavigate("home")
+                onClick={(e) => {
+                  e.preventDefault()
                   setShowMobileMenu(false)
                 }}
               >
                 <HouseDoor className="text-danger" /> Home
               </Dropdown.Item>
               <Dropdown.Item
-                className="text-white d-flex align-items-center gap-2"
-                active={activeView === "novita"}
-                onClick={() => {
-                  onNavigate && onNavigate("novita")
-                  setShowMobileMenu(false)
-                }}
+                as={Link}
+                to="/"
+                className={`text-white d-flex align-items-center gap-2 ${
+                  location.pathname === "/" ? "active" : ""
+                }`}
+                onClick={() => setShowMobileMenu(false)}
               >
                 <Compass className="text-danger" /> Novità
               </Dropdown.Item>
               <Dropdown.Item
+                href="#"
                 className="text-white d-flex align-items-center gap-2"
-                active={activeView === "radio"}
-                onClick={() => {
-                  onNavigate && onNavigate("radio")
+                onClick={(e) => {
+                  e.preventDefault()
                   setShowMobileMenu(false)
                 }}
               >
                 <Broadcast className="text-danger" /> Radio
               </Dropdown.Item>
               <Dropdown.Item
-                className="text-white d-flex align-items-center gap-2"
-                active={activeView === "favorites"}
-                onClick={() => {
-                  onNavigate && onNavigate("favorites")
-                  setShowMobileMenu(false)
-                }}
+                as={Link}
+                to="/favorites"
+                className={`text-white d-flex align-items-center gap-2 ${
+                  location.pathname === "/favorites" ? "active" : ""
+                }`}
+                onClick={() => setShowMobileMenu(false)}
               >
                 <Heart className="text-danger" /> Preferiti
               </Dropdown.Item>
